@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body class="background">
+    <header>
+        <div class="overlay">
+            <h1 class="my_Task">My Task Board</h1>
+        </div>
+    </header>
+
+    <div style="height: 12px;">
+        <form class="form__contact" action="">
+            <fieldset class="lines">
+                <label for="taskName">Task name:</label>
+                <input type="text" id="taskName" maxlength="33">
+                <label for="details">Task details:</label>
+                <textarea type="text" id="" cols="30" rows="7" class="textarea" style="overflow:auto;"></textarea>
+                <label for="date" class="dateLabel">Due to:</label>
+                <input type="date">
+                <label for="time">Exact time:</label>
+                <input type="time">
+                <button class="btn btn-success save">save</button>
+                <button class="btn btn-danger">reset</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
