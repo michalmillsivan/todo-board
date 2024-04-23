@@ -1,5 +1,3 @@
-
-
 .background {
     background-image: url(https://wallpapers.com/images/hd/bulletin-board-background-1600-x-1200-1ohnx4m90qij6ks1.jpg);
 }
@@ -49,9 +47,10 @@ input {
     background: none;
     border: none;
     width: 510px;
-    height: 92px;
+    height: 30px;
     padding-left: 55px;
-    
+    font-size: medium;
+    margin-bottom: 17px;
 }
 
 textarea {
@@ -61,6 +60,7 @@ textarea {
     height: 92px;
     padding-left: 55px;
     padding-top: 30px;
+    font-size: medium;
 }
 
 label {
@@ -69,11 +69,21 @@ label {
     width: 510px;
     height: 10px;
     padding-left: 55px;
-    padding-top: 30px;
+    padding-top: 35px;
     color: #333;
+    font-size: large;
 }
 
-.dateLabel{
+
+
+#priority {
+    font-size: medium;
+    background: none;
+    border: none;
+    padding-left: 55px;
+}
+
+.dateLabel {
     padding-top: 15px;
 }
 
