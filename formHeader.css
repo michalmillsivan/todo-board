@@ -109,6 +109,17 @@ fieldset {
     font: 24px 'Shadows Into Light', cursive;
     background: #fff linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 0) 0 20px / 100%;
     line-height: 1.66;
+
+    &::after{
+        position: absolute;
+        top: 0;
+        left: 50px;
+        content: '';
+        height: 100%;
+        width: 1px;
+        border-left: double #E08183; 
+    }
+    
 }
 
 

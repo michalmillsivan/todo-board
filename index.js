@@ -7,107 +7,155 @@ var notes = [
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "14:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "15:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "18:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "14:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "14:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "14:30",
     },
     {
         taskName: "pickUp my nephew",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
-        dueTime: "14:30"
+        dueTime: "14:30",
     }
 
 
 ]
 
-
 function init() {
-    var notesListDiv = document.getElementById("notesList")
-
-    for (let index = 0; index < notes.length; index++) {
-        const currentNote = notes[index]; //dealing with one note at a time
-        const noteContainerDiv = document.createElement("div"); //creating a container for each note
-        noteContainerDiv.id = `note_${index}`
-        noteContainerDiv.className = "notesContainerDiv"; //adding a class for the container
-
-        const i = document.createElement("i"); //adding the pin element
-        i.className = "pin"; //adding a class for the pin
-
-        const blockquote = document.createElement("blockquote"); //a conainer for the content of the note
-        blockquote.classList.add("note", "yellow");
-       
-        //what will be written inside the container
-
-        const taskName = document.createElement("h2")
-        taskName.innerText = currentNote.taskName
-
-        const priority = document.createElement("h3")
-        priority.innerText = currentNote.priority
-
-        const details = document.createElement("h4")
-        details.innerText = currentNote.taskDetails
-
-        const date = document.createElement("h4")
-        date.innerText = currentNote.dueDate
-
-        const time = document.createElement("h4")
-        time.innerText = currentNote.dueTime
-
-        const delButton = document.createElement("button")
-        delButton.classList.add("btn", "btn-danger")
-        delButton.innerText = "🗑️"
-
-        const selectButton = document.createElement("button")
-        selectButton.classList.add("btn", "btn-success")
-        selectButton.innerText = "select"
-        selectButton.addEventListener("click", function () {
-            blockquote.style.background = "pink"
-        })
-
-        //appending:
-        
-        blockquote.append(taskName, priority, details, date, time, delButton, selectButton)
-        noteContainerDiv.append(i, blockquote)
-        notesListDiv.append(noteContainerDiv)
-    }
-    console.log(notesListDiv)
+    const notesListDiv = document.getElementById("notesList")
+    draw(notes)
 }
 
+function clearNotes() {
+    document.getElementById("notesList").innerHTML = ""
+}
+
+function draw(notesData) {
+    clearNotes()
+    for (let index = 0; index < notesData.length; index++) {
+        const currentNoteUI = getSingleNoteUI(notesData[index], index); //drawin a single note
+        document.getElementById("notesList").append(currentNoteUI);//push inside the note list div the UI peace.
+    }
+    updateSelectedNotes(notesData.filter(notes => notes.isSelected === true))
+}
+
+function updateSelectedNotes(arrayOfSelectedBooks) {
+    const selectedNotesContainer = document.getElementById("selectedNotesNumber");
+    selectedNotesContainer.innerText = arrayOfSelectedBooks.length;
+}
+
+function getSingleNoteUI(noteData, index) {
+    if (typeof noteData !== 'object') return;
+
+    const notesListDiv = document.getElementById("notesList")
+
+    const noteContainerDiv = document.createElement("div"); //creating a container for each note
+    const id = `note_${index}`
+    noteContainerDiv.id = id;
+    noteContainerDiv.className = "notesContainerDiv"; //adding a class for the container
+
+
+
+    const i = document.createElement("i"); //adding the pin element
+    i.className = "pin"; //adding a class for the pin
+
+    const blockquote = document.createElement("blockquote"); //a conainer for the content of the note
+    blockquote.classList.add("note", "yellow");
+
+    if (noteData.isSelected === true) {
+        blockquote.style.background = "pink"
+    } else {
+        blockquote.style.background = "#eae672"
+    }
+
+    //what will be written inside the container
+
+    const taskName = document.createElement("h2")
+    taskName.innerText = noteData.taskName
+
+    const priority = document.createElement("h3")
+    priority.innerText = noteData.priority
+
+    const details = document.createElement("h4")
+    details.innerText = noteData.taskDetails
+
+    const date = document.createElement("h4")
+    date.innerText = noteData.dueDate
+
+    const time = document.createElement("h4")
+    time.innerText = noteData.dueTime
+
+    const delButton = document.createElement("button")
+    delButton.classList.add("btn", "btn-danger")
+    delButton.innerText = "🗑️"
+    delButton.setAttribute("id", `deletButton_${index}`)
+    delButton.addEventListener("click", function(){ //find the id of the element you want to delete.
+        const delIndex = parseInt(delButton.id.replace("deletButton_", ""));
+        const noteIndex = parseInt(id.replace("note_", ""));
+        if (!isNaN(delIndex) && !isNaN(noteIndex)) {
+            const elementToDelete = document.getElementById(`note_${noteIndex}`);
+            if (elementToDelete) {
+                notes.splice(noteIndex, 1);
+                draw(notes)
+            }
+        }
+    });
+
+    const selectButton = document.createElement("button")
+    selectButton.classList.add("btn", "btn-primary")
+    selectButton.innerText = "select"
+    selectButton.addEventListener("click", function () {
+        if (noteData.isSelected === true) {
+            noteData.isSelected = false
+        } else {
+            noteData.isSelected = true
+        }
+        draw(notes)
+    })
+
+    //appending:
+
+    blockquote.append(taskName, priority, details, date, time, delButton, selectButton)
+    noteContainerDiv.append(i, blockquote)
+    notesListDiv.append(noteContainerDiv)
+
+    console.log(noteContainerDiv)
+    return noteContainerDiv
+}
 
 function getSingleNoteByProp(prop, value) { //serch
     return notes.find(currentNote =>
@@ -128,8 +176,6 @@ function deleteNoteByName(name, notesArray) { //delete single note
         notesArray.splice(indexToDelete, 1)
     }
 }
-
-function draw() { }
 
 function addNewNote() { }
 
