@@ -1,9 +1,13 @@
-#functionalitys {
+.functionalitys {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+    background-color: azure;
+}
+
+.searchInput {
+  margin-bottom: 0px !important;
 }
 
 
@@ -11,6 +15,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    height: 500px;
+    overflow: auto;
+}
+
+
+#dataManegment{
+    margin-top: 10px;
+    width: 100%;
+
 }
 
 @import url(https://fonts.googleapis.com/css?family=Satisfy);

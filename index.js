@@ -1,5 +1,6 @@
 
 inputSearchValueGlobal = "";
+let filteredNotes = []
 var notes = [
     //example
     {
@@ -31,14 +32,14 @@ var notes = [
         dueTime: "14:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "hello",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "14:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "michal",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
@@ -56,7 +57,28 @@ var notes = [
 ]
 
 function init() {
-    const notesListDiv = document.getElementById("notesList")
+    // const notesListDiv = document.getElementById("notesList")
+    // const searchButton = document.getElementById("searchButton")
+    // searchButton.addEventListener("click", alert("hello"))
+    draw(notes)
+}
+
+function search() {
+    const searchInput = document.getElementById("searchInput")
+    const searchValue = searchInput.value
+    const filteredNotes = notes.filter(note => note.taskName.toLowerCase().includes(searchValue.toLowerCase()))
+    console.log(filteredNotes)
+    draw(filteredNotes)
+    console.log(filteredNotes)
+    // console.log("Search value:", searchValue);
+    // console.log("Filtered notes:", newNoteArray);
+}
+
+function resetSearch() {
+    const resetSearchButton = document.getElementById("resetSearchButton")
+    resetSearchButton.addEventListener("click", function () {
+        searchValue.innerText = "Search task by name..."
+    })
     draw(notes)
 }
 
@@ -96,11 +118,7 @@ function getSingleNoteUI(noteData, index) {
     const blockquote = document.createElement("blockquote"); //a conainer for the content of the note
     blockquote.classList.add("note", "yellow");
 
-    if (noteData.isSelected === true) {
-        blockquote.style.background = "pink"
-    } else {
-        blockquote.style.background = "#eae672"
-    }
+
 
     //what will be written inside the container
 
@@ -123,7 +141,7 @@ function getSingleNoteUI(noteData, index) {
     delButton.classList.add("btn", "btn-danger")
     delButton.innerText = "🗑️"
     delButton.setAttribute("id", `deletButton_${index}`)
-    delButton.addEventListener("click", function(){ //find the id of the element you want to delete.
+    delButton.addEventListener("click", function () { //find the id of the element you want to delete.
         const delIndex = parseInt(delButton.id.replace("deletButton_", ""));
         const noteIndex = parseInt(id.replace("note_", ""));
         if (!isNaN(delIndex) && !isNaN(noteIndex)) {
@@ -137,8 +155,15 @@ function getSingleNoteUI(noteData, index) {
 
     const selectButton = document.createElement("button")
     selectButton.classList.add("btn", "btn-primary")
-    selectButton.innerText = "select"
+    if (noteData.isSelected === true) {
+        selectButton.innerText = "unselect"
+        blockquote.style.background = "pink"
+    } else {
+        selectButton.innerText = "select"
+        blockquote.style.background = "#eae672"
+    }
     selectButton.addEventListener("click", function () {
+        
         if (noteData.isSelected === true) {
             noteData.isSelected = false
         } else {
