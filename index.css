@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    height: 500px;
+    height: 497px;
     overflow: auto;
 }
 
@@ -60,11 +60,20 @@
 
 .deleteButton{
     float: right;
-    display: none;
+    opacity: 0;
+    transition: 0.1s;
 }
 
 .deleteButton:hover{
-    display:initial ;
+    opacity: 1;
+    float: right;
+    display: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: #eae672;
 }
 
 .dateTimeDiv {

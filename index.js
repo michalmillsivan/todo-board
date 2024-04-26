@@ -152,22 +152,22 @@ function getSingleNoteUI(noteData, index) {
     details.innerText = noteData.taskDetails
     details.className = "newNoteDetails"
 
-    
+
     const date = document.createElement("h4")
     date.innerText = noteData.dueDate
-    
+
     const time = document.createElement("h4")
     time.innerText = noteData.dueTime
-    
+
     const dateTimeDiv = document.createElement("div")
     dateTimeDiv.className = "dateTimeDiv"
     dateTimeDiv.append(date, time)
 
     const delButton = document.createElement("button")
-    delButton.classList.add("btn", "btn-danger", "deleteButton")
+    delButton.classList.add("btn", "deleteButton")
     // delButton.innerText = "🗑️"
     delButton.setAttribute("id", `deletButton_${index}`)
-    delButton.addEventListener("click", function (event) { 
+    delButton.addEventListener("click", function (event) {
         event.preventDefault();
         const noteIndex = parseInt(id.replace("note_", ""));
         if (!isNaN(noteIndex)) {
@@ -175,8 +175,11 @@ function getSingleNoteUI(noteData, index) {
             localStorage.setItem("notes", JSON.stringify(notes));
             draw(notes);
         }
-        });
-    
+    });
+    const spanElement = document.createElement("span");
+    spanElement.classList.add("glyphicon", "glyphicon-remove");
+    spanElement.setAttribute("aria-hidden", "true");
+    delButton.appendChild(spanElement);
 
     //appending:
 

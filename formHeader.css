@@ -36,6 +36,7 @@ h1 {
 
 #formDIv {
     margin-bottom: 20px;
+    margin-top: 12px;
 }
 
 #taskNameLable {
@@ -91,6 +92,7 @@ h1 {
 
 .lines {
     background: #fff linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 0) 0 20px / 100% 40px;
+    padding-right: 5px;
 }
 
 .my_Task {
@@ -114,8 +116,9 @@ textarea {
     border: none;
     width: 510px;
     height: 92px;
-    padding-left: 55px;
+    padding-left: 0px;
     padding-top: 30px;
+    margin-left: 55px;
     font-size: medium;
 }
 
