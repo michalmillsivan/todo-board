@@ -1,5 +1,6 @@
 header {
-    /* background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg'); */
+    display: flex;
+    justify-content: center;
     text-align: center;
     width: 100%;
     height: auto;
@@ -20,6 +21,14 @@ header .overlay {
 
 }
 
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    margin-bottom: 0px !important;
+    margin-top: 0px;
+
+}
+
 #meat {
     display: flex;
 }
@@ -35,12 +44,12 @@ header .overlay {
     margin-top: 38px;
 }
 
-#taskName{
+#taskName {
     margin-bottom: 0px;
 }
 
 #taskPriority {
-padding-top: 0px;
+    padding-top: 0px;
 }
 
 #taskDetailsLable {
@@ -51,6 +60,7 @@ padding-top: 0px;
     padding-top: 0px;
     margin-top: 2px;
     line-height: 42px;
+    
 }
 
 #dateLable {
@@ -94,7 +104,7 @@ input {
     border: none;
     width: 510px;
     height: 30px;
-    padding-left: 55px;
+    margin-left: 55px;
     font-size: medium;
     margin-bottom: 17px;
 }
@@ -120,20 +130,10 @@ label {
     font-size: large;
 }
 
-
-
-#priority {
-    font-size: medium;
-    background: none;
-    border: none;
-    padding-left: 55px;
-}
-
-
 .save {
     margin-left: 55px;
     margin-right: 10px;
-    width: 52.6px;
+    
 }
 
 .form__contact {
@@ -157,20 +157,14 @@ fieldset {
     background: #fff linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 0) 0 20px / 100%;
     line-height: 1.66;
 
-    &::after{
+    &::after {
         position: absolute;
         top: 0;
         left: 50px;
         content: '';
         height: 100%;
         width: 1px;
-        border-left: double #E08183; 
+        border-left: double #E08183;
     }
-    
+
 }
-/* 
-.form__field {
-    display: inline;
-    color: #7DB665;
-    outline: none;
-} */

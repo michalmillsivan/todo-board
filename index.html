@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="formHeader.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="fonts.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body class="background">
@@ -25,60 +27,25 @@
     </header>
 
     <div id="meat">
-        <!-- <div style="display: flex; flex-direction: column;"> -->
-            <div id="formDIv">
-                <form class="form__contact" id="taskForm">
-                    <fieldset id="fieldset" class="lines">
-                        <label id="taskNameLable" for="taskName">Task name:</label>
-                        <input type="text" id="taskName" maxlength="33">
-                        <label id="taskPriority" for="priority">Task priority</label>
-                        <select name="priority" id="priority">
-                            <option value="">choose priority of task</option>
-                            <option value="high">high</option>
-                            <option value="medium">medium</option>
-                            <option value="low">low</option>
-                        </select>
-                        <label id="taskDetailsLable" for="details">Task details:</label>
-                        <textarea type="text" id="details" cols="30" rows="7" class="textarea"
-                            style="overflow:auto;"></textarea>
-                        <label id="dateLable" for="date" class="dateLabel">Due to:</label>
-                        <input id="date" type="date">
-                        <label id="timeLable" for="time">Exact time:</label>
-                        <input id="time" type="time">
-                        <!-- <button id="save" class="btn btn-success save">save</button>
-                        <button id="reset" class="btn btn-danger">reset</button> -->
-                    </fieldset>
-                </form>
-            </div>
+        <div id="formDIv">
+            <form class="form__contact" id="taskForm">
+                <fieldset id="fieldset" class="lines">
+                    <label id="taskNameLable" for="taskName">Task name:</label>
+                    <input type="text" id="taskName" maxlength="33">
+                    <label id="taskDetailsLable" for="details">Task details:</label>
+                    <textarea type="text" id="details" cols="30" rows="7" class="textarea"
+                        style="overflow:auto;"></textarea>
+                    <label id="dateLable" for="date" class="dateLabel">Due to:</label>
+                    <input id="date" type="date">
+                    <label id="timeLable" for="time">Exact time:</label>
+                    <input id="time" type="time">
+                </fieldset>
+            </form>
+        </div>
 
-            <div id="dataManegment">
-                <div id="functionalitys" class="functionalitys">
-                    <!-- <div style="display: flex;">
-                        <button id="deleteAllButton" class="btn btn-danger" onclick="clearNotes()">Delete All
-                            Notes</button>
-                    </div> -->
-                    <div>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input id="searchInput" name="searchInput" type="text" class="form-control searchInput"
-                                    placeholder="Search task by name..." onchange="search()">
-                            </div>
-                            <button id="resetSearchButton" type="reset" class="btn btn-info"
-                                onclick="resetSearch()">Reset Search</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div style="background-color: azure;">
-                    <span>Selected Notes:</span>
-                    <span id="selectedNotesNumber"></span>
-                </div>
-
-                <div id="notesList">
-
-                </div>
-            </div>
-        <!-- </div> -->
+        <div id="dataManegment">
+            <div id="notesList"></div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
