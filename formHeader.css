@@ -132,6 +132,8 @@ label {
 
 .save {
     margin-left: 55px;
+    margin-right: 10px;
+    width: 52.6px;
 }
 
 .form__contact {

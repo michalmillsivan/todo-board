@@ -4,49 +4,49 @@ let filteredNotes = []
 var notes = [
     //example
     {
-        taskName: "pickUp my nephew",
+        taskName: "1",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "14:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "2",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "15:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "3",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "18:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "4",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "14:30",
     },
     {
-        taskName: "hello",
+        taskName: "5",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "14:30",
     },
     {
-        taskName: "michal",
+        taskName: "6",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
         dueTime: "14:30",
     },
     {
-        taskName: "pickUp my nephew",
+        taskName: "7",
         priority: "high",
         taskDetails: "Tavor kindergarten, Kfar-Saba",
         dueDate: "20/04/24",
@@ -56,22 +56,70 @@ var notes = [
 
 ]
 
+localStorage.setItem("notes", JSON.stringify(notes));
+
+
 function init() {
-    // const notesListDiv = document.getElementById("notesList")
+    
+    const formField = document.getElementById("fieldset")
+    const notesListDiv = document.getElementById("notesList")
+
+    const storedNotes = localStorage.getItem("notes"); //
+    const notes = storedNotes ? JSON.parse(storedNotes) : [];
+
+    const buttonCreateNote = document.createElement("button")
+    buttonCreateNote.innerText = "add"
+    buttonCreateNote.classList.add("btn", "btn-success", "save")
+
+    buttonCreateNote.addEventListener("click", function (event) {
+        event.preventDefault()
+        const taskName = document.getElementById("taskName")
+        const priority = document.getElementById("priority")
+        const details = document.getElementById("details")
+        const date = document.getElementById("date")
+        const time = document.getElementById("time")
+        console.log(taskName.value, priority.value, details.value, date.value, time.value)
+        if (taskName.value === "" || details.value === "") {
+            return;
+        }
+
+        let newNote = {
+            taskName: taskName.value,
+            priority: priority.value,
+            taskDetails: details.value,
+            dueDate: date.value,
+            dueTime: time.value
+        }
+        notes.push(newNote)
+        localStorage.setItem("notes", JSON.stringify(notes));
+        draw(notes)
+        taskName.value = ""
+        priority.value = ""
+        details.value = ""
+        date.value = ""
+        time.value = ""
+
+    })
+
+    // const buttonResetForm = document.createElement("button")
+    // buttonResetForm.innerText = "reset"
+    // buttonResetForm.classList.add("btn", "btn-danger")
+
+
+    formField.append(buttonCreateNote)
     // const searchButton = document.getElementById("searchButton")
     // searchButton.addEventListener("click", alert("hello"))
     draw(notes)
 }
 
+
 function search() {
     const searchInput = document.getElementById("searchInput")
     const searchValue = searchInput.value
     const filteredNotes = notes.filter(note => note.taskName.toLowerCase().includes(searchValue.toLowerCase()))
-    console.log(filteredNotes)
+ 
     draw(filteredNotes)
-    console.log(filteredNotes)
-    // console.log("Search value:", searchValue);
-    // console.log("Filtered notes:", newNoteArray);
+
 }
 
 function resetSearch() {
@@ -141,7 +189,8 @@ function getSingleNoteUI(noteData, index) {
     delButton.classList.add("btn", "btn-danger")
     delButton.innerText = "🗑️"
     delButton.setAttribute("id", `deletButton_${index}`)
-    delButton.addEventListener("click", function () { //find the id of the element you want to delete.
+    delButton.addEventListener("click", function (event) { //find the id of the element you want to delete.
+        event.preventDefault()
         const delIndex = parseInt(delButton.id.replace("deletButton_", ""));
         const noteIndex = parseInt(id.replace("note_", ""));
         if (!isNaN(delIndex) && !isNaN(noteIndex)) {
@@ -163,7 +212,7 @@ function getSingleNoteUI(noteData, index) {
         blockquote.style.background = "#eae672"
     }
     selectButton.addEventListener("click", function () {
-        
+
         if (noteData.isSelected === true) {
             noteData.isSelected = false
         } else {
@@ -178,13 +227,8 @@ function getSingleNoteUI(noteData, index) {
     noteContainerDiv.append(i, blockquote)
     notesListDiv.append(noteContainerDiv)
 
-    console.log(noteContainerDiv)
+    // console.log(noteContainerDiv)
     return noteContainerDiv
-}
-
-function getSingleNoteByProp(prop, value) { //serch
-    return notes.find(currentNote =>
-        currentNote[prop.toLowerCase()].toLowerCase() === value.toLowerCase())
 }
 
 function getSingleNoteByHighPriority(priority, notesArray) { //filter by priority
@@ -192,27 +236,24 @@ function getSingleNoteByHighPriority(priority, notesArray) { //filter by priorit
     return notesArray.filter(function (currentNote) { return currentNote.priority.value > priority.value })
 }
 
-function deleteNoteByName(name, notesArray) { //delete single note
-    if (typeof name !== 'string') return;
-    if (!Array.isArray(notesArray)) return;
-    var taskName = name.toLowerCase()
-    var indexToDelete = notesArray.findIndex(function (currentNote) { return currentNote.taskName.toLowerCase() === taskName })
-    if (indexToDelete > -1) {
-        notesArray.splice(indexToDelete, 1)
-    }
-}
+// function getSingleNoteByProp(prop, value) { //serch
+//     return notes.find(currentNote =>
+//         currentNote[prop.toLowerCase()].toLowerCase() === value.toLowerCase())
+// }
 
-function addNewNote() { }
+// function deleteNoteByName(name, notesArray) { //delete single note
+//     if (typeof name !== 'string') return;
+//     if (!Array.isArray(notesArray)) return;
+//     var taskName = name.toLowerCase()
+//     var indexToDelete = notesArray.findIndex(function (currentNote) { return currentNote.taskName.toLowerCase() === taskName })
+//     if (indexToDelete > -1) {
+//         notesArray.splice(indexToDelete, 1)
+//     }
+// }
 
-function deleteAllNotes() { }
+// function addNewNote() { }
 
-function searchNote() { }
-
-function resetSearchResult() { }
-
-function selectNote() { }
-
-function deleteSelectedNotes() { }
+// function deleteSelectedNotes() { }
 
 init();
-console.log(notes)
+// console.log(notes)

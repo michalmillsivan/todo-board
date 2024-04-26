@@ -28,15 +28,15 @@
         <!-- <div style="display: flex; flex-direction: column;"> -->
             <div id="formDIv">
                 <form class="form__contact" id="taskForm">
-                    <fieldset class="lines">
+                    <fieldset id="fieldset" class="lines">
                         <label id="taskNameLable" for="taskName">Task name:</label>
                         <input type="text" id="taskName" maxlength="33">
                         <label id="taskPriority" for="priority">Task priority</label>
                         <select name="priority" id="priority">
                             <option value="">choose priority of task</option>
-                            <option value="3">high</option>
-                            <option value="2">medium</option>
-                            <option value="1">low</option>
+                            <option value="high">high</option>
+                            <option value="medium">medium</option>
+                            <option value="low">low</option>
                         </select>
                         <label id="taskDetailsLable" for="details">Task details:</label>
                         <textarea type="text" id="details" cols="30" rows="7" class="textarea"
@@ -45,18 +45,18 @@
                         <input id="date" type="date">
                         <label id="timeLable" for="time">Exact time:</label>
                         <input id="time" type="time">
-                        <button id="save" class="btn btn-success save">save</button>
-                        <button id="reset" class="btn btn-danger">reset</button>
+                        <!-- <button id="save" class="btn btn-success save">save</button>
+                        <button id="reset" class="btn btn-danger">reset</button> -->
                     </fieldset>
                 </form>
             </div>
 
             <div id="dataManegment">
                 <div id="functionalitys" class="functionalitys">
-                    <div style="display: flex;">
+                    <!-- <div style="display: flex;">
                         <button id="deleteAllButton" class="btn btn-danger" onclick="clearNotes()">Delete All
                             Notes</button>
-                    </div>
+                    </div> -->
                     <div>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
