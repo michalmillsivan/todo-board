@@ -54,6 +54,7 @@
 
 .newNoteDetails {
     overflow: auto;
+    overflow-wrap: break-word;
     height: 100px;
    
 }
